@@ -64,17 +64,18 @@ st.markdown(f"""
   html, body, [class*="css"] {{ font-family: '{FONT_FAMILY}'; color: {C_SLATE_700}; }}
 
   /* Sidebar */
-  # [data-testid="stSidebar"] {{
-  #     background: {C_SLATE_900};
-  #     border-right: 1px solid #1E293B;
-  # }}
-  [data-testid="stSidebar"] {
-    background: #F8FAFC;
-}
-[data-testid="stSidebar"] * {
-    color: #334155 !important;
-}
-  # [data-testid="stSidebar"] * {{ color: #CBD5E1 !important; }}
+
+
+
+    [data-testid="stSidebar"] {{
+        background: #F8FAFC;
+    }}
+    
+    [data-testid="stSidebar"] * {{
+        color: #334155 !important;
+    }}
+
+
   [data-testid="stSidebar"] .stRadio label {{ font-size: 0.83rem; letter-spacing: 0.02em; }}
   [data-testid="stSidebar"] hr {{ border-color: #1E293B !important; }}
   
