@@ -202,13 +202,15 @@ def insight(text):
 def badge(text, kind="neutral"):
     return f'<span class="badge badge-{kind}">{text}</span>'
 
+# def is_dark():
+#     """Best-effort dark mode detection for Plotly chart theming."""
+#     try:
+#         theme = st.context.headers.get("X-Streamlit-Theme", "light")
+#         return "dark" in theme.lower()
+#     except Exception:
+#         return False
 def is_dark():
-    """Best-effort dark mode detection for Plotly chart theming."""
-    try:
-        theme = st.context.headers.get("X-Streamlit-Theme", "light")
-        return "dark" in theme.lower()
-    except Exception:
-        return False
+    return False
 
 def plotly_defaults(fig, title, xlab, ylab, height=420, legend=True):
     dark = is_dark()
