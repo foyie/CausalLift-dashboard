@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+*.pyc
+
+# Environments
+venv/
+.env/
+
+# OS files
+.DS_Store
+
+# Logs / experiments
+logs/
+mlruns/
+wandb/
+
+# Large/raw data (DO NOT PUSH THESE)
+data/raw/
+data/intermediate/
+
+# Models (if large)
+*.pkl
+*.joblib
+*.pt
+
+
