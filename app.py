@@ -64,13 +64,20 @@ st.markdown(f"""
   html, body, [class*="css"] {{ font-family: '{FONT_FAMILY}'; color: {C_SLATE_700}; }}
 
   /* Sidebar */
-  [data-testid="stSidebar"] {{
-      background: {C_SLATE_900};
-      border-right: 1px solid #1E293B;
-  }}
-  [data-testid="stSidebar"] * {{ color: #CBD5E1 !important; }}
+  # [data-testid="stSidebar"] {{
+  #     background: {C_SLATE_900};
+  #     border-right: 1px solid #1E293B;
+  # }}
+  [data-testid="stSidebar"] {
+    background: #F8FAFC;
+}
+[data-testid="stSidebar"] * {
+    color: #334155 !important;
+}
+  # [data-testid="stSidebar"] * {{ color: #CBD5E1 !important; }}
   [data-testid="stSidebar"] .stRadio label {{ font-size: 0.83rem; letter-spacing: 0.02em; }}
   [data-testid="stSidebar"] hr {{ border-color: #1E293B !important; }}
+  
 
   /* Main area */
   .main .block-container {{ padding-top: 2rem; padding-bottom: 3rem; max-width: 1300px; }}
@@ -209,8 +216,8 @@ def badge(text, kind="neutral"):
 #         return "dark" in theme.lower()
 #     except Exception:
 #         return False
-def is_dark():
-    return False
+# def is_dark():
+#     return False
 
 def plotly_defaults(fig, title, xlab, ylab, height=420, legend=True):
     dark = is_dark()
@@ -229,7 +236,12 @@ def plotly_defaults(fig, title, xlab, ylab, height=420, legend=True):
         xaxis_title=dict(text=xlab, font=dict(size=11, color=sub_col)),
         yaxis_title=dict(text=ylab, font=dict(size=11, color=sub_col)),
         height=height,
-        template="plotly_dark" if dark else PLOTLY_TEMPLATE,
+
+        template=PLOTLY_TEMPLATE,
+        # paper_bgcolor="white",
+        # plot_bgcolor="white",
+        
+        # template="plotly_dark" if dark else PLOTLY_TEMPLATE,
         paper_bgcolor=bg,
         plot_bgcolor=bg,
         font=dict(family=FONT_FAMILY, size=11, color=text_col),
@@ -646,27 +658,44 @@ def fig_per_model_qini(val):
             bordercolor=color, borderwidth=1, borderpad=4,
         )
 
-    dark = is_dark()
+    # dark = is_dark()
     bg       = "#0F172A" if dark else "white"
     grid_col = "#1E293B" if dark else C_SLATE_100
     line_col = "#334155" if dark else C_SLATE_200
     text_col = "#CBD5E1" if dark else C_SLATE_700
     sub_col  = "#64748B" if dark else C_SLATE_400
 
+    # fig.update_layout(
+    #     height=500,
+    #     template="plotly_dark" if dark else PLOTLY_TEMPLATE,
+    #     paper_bgcolor=bg,
+    #     plot_bgcolor=bg,
+    #     font=dict(family=FONT_FAMILY, size=10, color=text_col),
+    #     title=dict(text="Qini Curves per Model — dotted line = random baseline",
+    #                font=dict(size=13, color=text_col), x=0, xanchor="left", pad=dict(b=12)),
+    #     margin=dict(l=12, r=12, t=56, b=12),
+    # )
+    # fig.update_xaxes(showgrid=False, linecolor=line_col, tickfont=dict(size=9, color=sub_col))
+    # fig.update_yaxes(gridcolor=grid_col, tickfont=dict(size=9, color=sub_col))
+    # return fig
+
     fig.update_layout(
         height=500,
-        template="plotly_dark" if dark else PLOTLY_TEMPLATE,
-        paper_bgcolor=bg,
-        plot_bgcolor=bg,
-        font=dict(family=FONT_FAMILY, size=10, color=text_col),
-        title=dict(text="Qini Curves per Model — dotted line = random baseline",
-                   font=dict(size=13, color=text_col), x=0, xanchor="left", pad=dict(b=12)),
+        template=PLOTLY_TEMPLATE,
+        paper_bgcolor="white",
+        plot_bgcolor="white",
+        font=dict(family=FONT_FAMILY, size=10, color=C_SLATE_700),
+        title=dict(
+            text="Qini Curves per Model — dotted line = random baseline",
+            font=dict(size=13, color=C_SLATE_700),
+            x=0,
+            xanchor="left",
+        ),
         margin=dict(l=12, r=12, t=56, b=12),
     )
     fig.update_xaxes(showgrid=False, linecolor=line_col, tickfont=dict(size=9, color=sub_col))
     fig.update_yaxes(gridcolor=grid_col, tickfont=dict(size=9, color=sub_col))
     return fig
-
 
 # ── Sidebar ────────────────────────────────────────────────────────────────────
 with st.sidebar:
